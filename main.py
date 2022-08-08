@@ -24,20 +24,36 @@ def prosesPesan():
   pesan = input('Mau pesan apa nomer berapa? ')
   porsi = input('Berapa Porsi? ')
   pesananDiproses(pesan, porsi)
+  return porsi
 
-def totalPesanan():
+def totalPesanan(porsi):
   total = 0
   print('Memu yang kamu pesan:')
   print('------------------------------------')
   for nomer,pesan in enumerate(pesanan):
-    print(f"No.{nomer+1}\t {pesan[0]}\t {pesan[1]}")
+    print(f"No.{nomer+1}\t {pesan[0]}\t {porsi}\t total:{pesan[1]}")
     total += pesan[1]
   print('------------------------------------')
   print(f"Total Pesanan = {total}", '\n')
+  return total
+
+def pembayaran(sembarang):
+    while True:
+      bayar=input('bayar')
+      bayaran=int(bayar)
+      kembalian = bayaran - sembarang
+      if kembalian >=0 :
+        print(f'kembalian anda {kembalian}')
+        break
+      else:
+        print(f'uang anda kurang')
+        continue
+  
+
 
 while True:
   menuTampil()
-  prosesPesan()
+  porsi=prosesPesan()
 
   ulang = input('Apakah Mau pesan yang lain? Y/T : ')
   print('\n')
@@ -46,5 +62,7 @@ while True:
   else:
     break
 
-totalPesanan()
+total = totalPesanan(porsi)
+pembayaran(total)
 print(pesanan)
+print(total)
